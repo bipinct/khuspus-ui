@@ -1,0 +1,6 @@
+mutation($content: String!, $images: [String]) {
+  createPost(content: $content, images: $images) {
+    status
+    message
+  }
+}

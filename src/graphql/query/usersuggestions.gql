@@ -1,0 +1,8 @@
+query($cursor: String, $limit: Int) {
+  users(cursor: $cursor, limit: $limit) {
+    id
+    username
+    about
+    profilepic
+  }
+}

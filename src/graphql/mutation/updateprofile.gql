@@ -1,0 +1,29 @@
+mutation(
+  $firstname: String
+  $middlename: String
+  $lastname: String
+  $email: String
+  $dateofbirth: String
+  $profilepic: String
+) {
+  updateUser(
+    firstname: $firstname
+    middlename: $middlename
+    lastname: $lastname
+    email: $email
+    dateofbirth: $dateofbirth
+    profilepic: $profilepic
+  ) {
+    status
+    message
+    user {
+      profilepic
+      firstname
+      middlename
+      lastname
+      phone
+      email
+      about
+    }
+  }
+}

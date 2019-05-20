@@ -1,0 +1,7 @@
+mutation($targetId: String!, $action: String, $type: String) {
+  follow(targetId: $targetId, action: $action, type: $type) {
+    status
+    message
+    action
+  }
+}

@@ -1,0 +1,10 @@
+query {
+  groups {
+    id
+    name
+    isenabled
+    description
+    grouppic
+    permission
+  }
+}

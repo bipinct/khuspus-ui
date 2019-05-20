@@ -1,0 +1,54 @@
+query($username: String!, $commentCount: Int, $commentCursor: String) {
+  user(username: $username) {
+    id
+    username
+    firstname
+    middlename
+    lastname
+    profilepic
+    posts {
+      content
+      id
+      images
+      createdAt
+      comments(limit: $commentCount, cursor: $commentCursor) {
+        total
+        cursor
+        hasMore
+        comments {
+          comment
+          user {
+            id
+            profilepic
+            username
+          }
+        }
+      }
+      likes {
+        total
+      }
+    }
+    followers {
+      followerId
+      user {
+        username
+        profilepic
+      }
+    }
+    following {
+      userId
+      user {
+        username
+        profilepic
+      }
+    }
+    groups {
+      name
+      description
+      grouppic
+    }
+    isFollowing
+    followsYou
+    isMe
+  }
+}

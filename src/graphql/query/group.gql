@@ -1,0 +1,75 @@
+query(
+  $id: String
+  $name: String
+  $postCursor: String
+  $commentCount: Int
+  $commentCursor: String
+) {
+  group(id: $id, name: $name) {
+    id
+    name
+    description
+    grouppic
+    permission
+    isenabled
+    members {
+      cursor
+      members {
+        userId
+        userrole
+        user {
+          profilepic
+          username
+          about
+        }
+      }
+    }
+    admins {
+      cursor
+      members {
+        userId
+        userrole
+        user {
+          profilepic
+          username
+          about
+        }
+      }
+    }
+    membercount
+    admincount
+    posts(limit: 2, cursor: $postCursor) {
+      cursor
+      posts {
+        id
+        content
+        user {
+          username
+          id
+          profilepic
+        }
+        likes {
+          total
+          isLiked
+        }
+        comments(limit: $commentCount, cursor: $commentCursor) {
+          total
+          cursor
+          hasMore
+          comments {
+            comment
+            user {
+              id
+              profilepic
+              username
+            }
+          }
+        }
+        createdAt
+        images
+      }
+    }
+    label
+    value
+  }
+}

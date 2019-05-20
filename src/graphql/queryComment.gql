@@ -1,0 +1,3 @@
+mutation($postId: String!, $cursor: String!) {
+
+}

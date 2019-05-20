@@ -1,0 +1,10 @@
+query {
+  userGroups(limit: 5) {
+    id
+    permission
+    name
+    description
+    grouppic
+    owner
+  }
+}

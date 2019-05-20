@@ -1,0 +1,10 @@
+query {
+  following {
+    userId
+    user {
+      username
+      profilepic
+      about
+    }
+  }
+}

@@ -1,0 +1,29 @@
+query {
+  posts(limit: 10) {
+    id
+    content
+    user {
+      username
+      id
+      profilepic
+    }
+    likes {
+      total
+    }
+    comments {
+      total
+      cursor
+      hasMore
+      comments {
+        comment
+        user {
+          id
+          profilepic
+          username
+        }
+      }
+    }
+    images
+    createdAt
+  }
+}

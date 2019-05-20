@@ -1,0 +1,16 @@
+mutation(
+  $groupId: String!
+  $userId: String!
+  $userrole: String!
+  $action: String!
+) {
+  addMembers(
+    groupId: $groupId
+    userId: $userId
+    userrole: $userrole
+    action: $action
+  ) {
+    status
+    message
+  }
+}

@@ -1,0 +1,6 @@
+query {
+  reportContentOption {
+    label
+    value
+  }
+}

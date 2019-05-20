@@ -1,0 +1,6 @@
+mutation($category: Int, $action: String) {
+  addUserCategories(action: $action, category: $category) {
+    status
+    message
+  }
+}

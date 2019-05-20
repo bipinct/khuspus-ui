@@ -1,0 +1,57 @@
+mutation($username: String!, $password: String!) {
+  signInWithOtp(username: $username, password: $password) {
+    enableOnboarding
+    status
+    token
+    user {
+      id
+      username
+      firstname
+      middlename
+      lastname
+      profilepic
+      posts {
+        content
+        id
+        images
+        createdAt
+        comments {
+          total
+        }
+        likes {
+          total
+        }
+      }
+      followers {
+        followerId
+        user {
+          username
+          profilepic
+        }
+      }
+      following {
+        userId
+        user {
+          username
+          profilepic
+        }
+      }
+
+      groups {
+        name
+        description
+        grouppic
+        label
+        value
+      }
+      postCount
+      followersCount
+      followingCount
+      email
+      phone
+      about
+      isFollowing
+      followsYou
+    }
+  }
+}

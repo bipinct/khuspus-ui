@@ -1,0 +1,20 @@
+mutation(
+  $name: String!
+  $description: String
+  $permission: String
+  $grouppic: String
+) {
+  createGroup(
+    name: $name
+    description: $description
+    permission: $permission
+    grouppic: $grouppic
+  ) {
+    status
+    message
+    group {
+      id
+      name
+    }
+  }
+}

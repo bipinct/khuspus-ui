@@ -1,0 +1,11 @@
+query {
+  followers {
+    followerId
+    user {
+      id
+      username
+      profilepic
+      about
+    }
+  }
+}

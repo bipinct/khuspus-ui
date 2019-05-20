@@ -1,0 +1,33 @@
+query($cursor: String, $commentCount: Int, $commentCursor: String) {
+  userfeed(limit: 5, cursor: $cursor) {
+    cursor
+    posts {
+      id
+      content
+      user {
+        username
+        id
+        profilepic
+      }
+      likes {
+        total
+        isLiked
+      }
+      comments(limit: $commentCount, cursor: $commentCursor) {
+        total
+        cursor
+        hasMore
+        comments {
+          comment
+          user {
+            id
+            profilepic
+            username
+          }
+        }
+      }
+      createdAt
+      images
+    }
+  }
+}

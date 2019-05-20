@@ -1,0 +1,18 @@
+mutation(
+  $content: String!
+  $id: String!
+  $images: [String]
+  $permission: String
+  $group: String
+) {
+  updatePost(
+    id: $id
+    content: $content
+    images: $images
+    permission: $permission
+    group: $group
+  ) {
+    status
+    message
+  }
+}

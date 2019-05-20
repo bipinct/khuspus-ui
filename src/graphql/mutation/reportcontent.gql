@@ -1,0 +1,6 @@
+mutation($postId: String!, $reason: String, $message: String) {
+  reportContent(postId: $postId, reason: $reason, message: $message) {
+    status
+    message
+  }
+}

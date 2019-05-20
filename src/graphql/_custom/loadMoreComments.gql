@@ -1,0 +1,13 @@
+query($postId: Int, $limit: Int, $cursor: String) {
+  comments(postId: $postId, limit: $limit, cursor: $cursor) {
+    total
+    cursor
+    comments {
+      comment
+      user {
+        username
+        profilepic
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+subscription($channelId: String) {
+  commentAdded(repoFullName: "abc") {
+    post {
+      id
+      content
+    }
+    comment
+  }
+}
+
+# subscription($channelId: Int!) {
+#   newChannelMessage(channel: $channelId) {
+#     userId
+#     username
+#   }
+# }
