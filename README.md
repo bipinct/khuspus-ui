@@ -1,6 +1,6 @@
-# Khupus-ui
+# Dodo-ui
 
-Client for khuspus server built on Quasar (VueJS)
+Client for Dodo server built on Quasar (VueJS)
 
 ## Quick Start
 

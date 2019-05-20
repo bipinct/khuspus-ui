@@ -30,6 +30,7 @@ export function toggleSidebar (state) {
 }
 
 export function updateUserInStore (state, data) {
+  console.log('-----------------', data)
   state.userdetails.id = data.user.id
   state.userdetails.username = data.user.username
   state.userdetails.profilepic = data.user.profilepic

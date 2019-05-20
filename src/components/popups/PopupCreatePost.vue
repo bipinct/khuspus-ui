@@ -1,6 +1,8 @@
 <template>
   <div>
-    <q-btn round color="primary" dense icon="add" @click.native="createPost"/>
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <q-btn round color="primary" size="lg" dense icon="add" @click.native="createPost"/>
+    </q-page-sticky>
     <q-modal v-model="opened" :content-css="{minWidth: '80vw', minHeight: '80vh'}">
       <q-modal-layout>
         <q-toolbar color="white" slot="header">

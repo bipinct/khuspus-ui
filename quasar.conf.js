@@ -90,6 +90,7 @@ module.exports = function (ctx) {
         'QCardTitle',
         'QCardMedia',
         'QFabAction',
+        'QPageSticky',
         'QScrollArea',
         'QListHeader',
         'QCardActions',

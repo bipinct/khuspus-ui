@@ -1,54 +1,58 @@
 <template>
-  <q-item multiline>
-    <q-item-side>
-      <q-item-tile avatar>
-        <img :src="profilePic">
-      </q-item-tile>
-    </q-item-side>
-    <q-item-main>
-      <q-item-tile>
-        <strong style=" text-transform:capitalize;">{{username}}</strong>
-      </q-item-tile>
-      <q-item-tile class="q-p-2">
-        <q-card flat>
-          <q-card-media>
-            <div v-on:click="showFeedDetail()">{{content}}</div>
-            <div v-if="gallery">
-              <q-carousel
-                color="white"
-                arrows
-                quick-nav
-                height="300px"
-                width="200px"
-                :thumbnails="gallery"
-              >
-                <q-carousel-slide v-for="image in gallery" :img-src="image" :key="image"/>
-              </q-carousel>
-            </div>
-          </q-card-media>
-          <q-card-actions>
-            <q-btn flat label="Todo (2)" icon="list"/>
-            <q-btn flat label="Done" icon="check"/>
-            <q-btn flat label="(20)" icon="chat"/>
-            <q-btn flat icon="share"/>
-          </q-card-actions>
-        </q-card>
-      </q-item-tile>
-      <q-item v-if="false">
-        <q-item-side>--</q-item-side>
-        <q-item-main>comments</q-item-main>
-        <q-item-side right>
-          <div>
-            <LikeItem :isLiked="isLiked" :likeCount="likeCount" :postId="postId"/>
+  <div>
+    <q-item multiline>
+      <q-item-side>
+        <q-item-tile avatar>
+          <img :src="profilePic">
+        </q-item-tile>
+      </q-item-side>
+      <q-item-main>
+        <q-item-tile>
+          <strong style=" text-transform:capitalize;">{{username}}</strong>
+        </q-item-tile>
+      </q-item-main>
+    </q-item>
+    <q-item-tile class="q-p-2">
+      <q-card flat>
+        <q-card-media>
+          <img v-if="gallery" :src="gallery[0]">
+        </q-card-media>
+        <q-card-title>{{content}}</q-card-title>
 
-            <q-item-tile icon="chat_bubble" color="blue-3"/>
-            <span>({{commentCounted}})</span>
-          </div>
-        </q-item-side>
-      </q-item>
+        <q-card-actions
+          style="justify-content:space-between;margin-top:0px!important;border-top:1px solid #eee;border-bottom:1px solid #eee;"
+        >
+          <AddRemoveTodo
+            :isLiked="isLiked"
+            :isinTodo="false"
+            :likeCount="likeCount"
+            :postId="postId"
+          />
+          <AddRemoveDone
+            :isLiked="isLiked"
+            :isinDone="false"
+            :likeCount="likeCount"
+            :postId="postId"
+          />
+          <AddRemoveComment :isLiked="isLiked" :likeCount="likeCount" :postId="postId"/>
+          <ShareButton :isLiked="isLiked" :likeCount="likeCount" :postId="postId"/>
+        </q-card-actions>
+      </q-card>
+    </q-item-tile>
+    <!-- <q-item v-if="false">
+      <q-item-side>--</q-item-side>
+      <q-item-main>comments</q-item-main>
+      <q-item-side right>
+        <div>
+          <LikeItem :isLiked="isLiked" :likeCount="likeCount" :postId="postId"/>
 
-      <div>
-        <!-- <ApolloMutation
+          <q-item-tile icon="chat_bubble" color="blue-3"/>
+          <span>({{commentCounted}})</span>
+        </div>
+      </q-item-side>
+    </q-item>-->
+
+    <!-- <ApolloMutation
           :mutation="require('../graphql/comment.gql')"
           :variables="{comment : commentInput,postId:postIdtoString(postId)}"
           @done="commentDone"
@@ -75,16 +79,13 @@
 
             <p v-if="error">An error occured: {{ error }}</p>
           </template>
-        </ApolloMutation>-->
-        <!-- <CommentBox
+    </ApolloMutation>-->
+    <!-- <CommentBox
           :v-if="false"
           :comments="comments"
           :newCommentData="newCommentData"
           :postId="postId"
-        />-->
-      </div>
-    </q-item-main>
-
+    />-->
     <!-- <q-item-side right>
       <q-btn flat round dense icon="more_vert">
         <q-popover>
@@ -106,19 +107,28 @@
         </q-popover>
       </q-btn>
     </q-item-side>-->
-  </q-item>
+  </div>
 </template>
 
 <script>
-import LikeItem from './LikeItem'
+// import LikeItem from './LikeItem'
+import ShareButton from './ShareButton'
+import AddRemoveTodo from './AddRemoveTodo'
+import AddRemoveDone from './AddRemoveDone'
+import AddRemoveComment from './AddRemoveComment'
+
 // import CommentBox from './CommentBox'
 export default {
   components: {
-    LikeItem
+    // LikeItem,
+    ShareButton,
+    AddRemoveTodo,
+    AddRemoveDone,
+    AddRemoveComment
     // CommentBox
   },
   props: [
-    'username', 'created', 'content', 'profilePic', 'commentCount', 'likeCount', 'images', 'postId', 'comments', 'isLiked', 'enableEdit'
+    'username', 'created', 'content', 'profilePic', 'commentCount', 'likeCount', 'images', 'postId', 'comments', 'isLiked', 'enableEdit', 'isinTodo', 'isinDone'
   ],
 
   data () {

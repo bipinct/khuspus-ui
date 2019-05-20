@@ -21,7 +21,6 @@
           <q-input
             type="text"
             name="password"
-            v-focus
             float-label="PIN"
             v-model="form.password"
             @blur="$v.form.password.$touch"
@@ -67,6 +66,12 @@ export default {
     onDone (data) {
       localStorage.setItem('x-token', data.data.signInWithOtp.token)
       localStorage.setItem('user', JSON.stringify(data.data.signInWithOtp.user))
+      console.log('***************')
+      console.log('***************')
+      console.log(data.data)
+      console.log('***************')
+      console.log('***************')
+
       this.$store.commit('user/userLogin', { status: true, token: data.data.signInWithOtp.token, user: data.data.signInWithOtp.user })
       if (data.data.signInWithOtp.enableOnboarding) {
         this.$router.push('/onboarding')

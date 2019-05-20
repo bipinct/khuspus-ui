@@ -1,7 +1,7 @@
 <template>
   <ApolloQuery
     ref="userfeed"
-    :query="require('../../graphql/usertodo.gql')"
+    :query="require('../../graphql/userdone.gql')"
     :variables="{ commentCount:5 }"
   >
     <template slot-scope="{ result: { loading, error, data } }">
@@ -10,12 +10,12 @@
       </div>
       <div v-else-if="error" class="error apollo">An error occured</div>
       <div v-else-if="data" class="result apollo">
-        <div v-if="data.todos.posts.length">
-          {{setCursor(data.todos.cursor)}}
+        <div v-if="data.dones.posts.length">
+          {{setCursor(data.dones.cursor)}}
           <q-infinite-scroll :handler="loadMoreContent" ref="infiniteScroll">
             <q-list highlight separator no-border>
               <FeedItem
-                v-for="post in data.todos.posts"
+                v-for="post in data.dones.posts"
                 :username="post.user.username"
                 :created="post.createdAt"
                 :content="post.content"
@@ -30,7 +30,7 @@
                 @click.native="$router.push('/feed/'+post.id)"
               />
             </q-list>
-            <template v-if="data.todos.cursor" v-slot:loading>
+            <template v-if="data.dones.cursor" v-slot:loading>
               <div class="row justify-center q-my-md">
                 <q-spinner-dots color="primary" size="40px"/>
               </div>
@@ -49,16 +49,14 @@
 import FeedItem from '../../components/FeedItem'
 import EmptyList from '../../components/EmptyList'
 export default {
-  name: 'FeedList',
+  name: 'DoneList',
   components: {
     FeedItem,
     EmptyList
   },
   data () {
     return {
-      opened: false,
       cursor: null
-
     }
   },
   methods: {
@@ -96,8 +94,6 @@ export default {
     setCursor (cursor) {
       this.cursor = cursor
     }
-
   }
-
 }
 </script>

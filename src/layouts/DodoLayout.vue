@@ -1,7 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <!-- <q-ajax-bar position="top" color="green"/> -->
-    <!-- TODO add serarch bar here -->
+    <q-ajax-bar position="top" color="green"/>
     <q-layout-header view="hhh">
       <q-toolbar color="white" text-color="primary" :inverted="$q.theme === 'ios'">
         <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu">
@@ -9,16 +8,12 @@
           <q-icon name="menu"/>
         </q-btn>
         <q-search v-model="search" clearable :debounce="600"/>
-        <!-- <q-btn flat dense round @click="goBack" aria-label="Back">
-          <q-icon name="keyboard_backspace"/>
-        </q-btn>-->
-        <!-- <q-toolbar-title>WIP {{backButton}}</q-toolbar-title> -->
       </q-toolbar>
     </q-layout-header>
     <q-layout-drawer
       v-model="leftDrawerOpen"
       :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
-      side="right"
+      side="left"
       :overlay="true"
     >
       <SideMenu/>
@@ -26,20 +21,15 @@
     <q-page-container>
       <router-view/>
     </q-page-container>
-    <q-layout-footer>
+    <PopupCreatePost/>
+
+    <!-- <q-layout-footer>
       <q-toolbar color="white" style="display:flex;justify-content:space-around;" no-shadow>
-        <!-- <q-btn
-          round
-          color="primary"
-          dense
-          icon="person"
-          @click.native="$router.push('/profile/'+username())"
-        />-->
         <q-btn round color="primary" dense icon="person" @click.native="$router.push('/feed')"/>
         <q-btn round color="green" dense icon="check" @click.native="$router.push('/todos')"/>
         <PopupCreatePost/>
       </q-toolbar>
-    </q-layout-footer>
+    </q-layout-footer>-->
   </q-layout>
 </template>
 <script>

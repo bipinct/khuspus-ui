@@ -8,18 +8,18 @@
       <q-item-main :label="username()" label-lines="1"/>
     </q-item>
     <q-item-separator/>
-    <q-item @click.native="$router.push('/user/feed')">
+    <q-item @click.native="$router.push('/user')">
       <q-item-side>
         <q-item-tile icon="format_align_justify" color="blue-4"/>
       </q-item-side>
       <q-item-main label="Feeds"/>
       <q-item-side right></q-item-side>
     </q-item>
-    <q-item @click.native="$router.push('/user/posts')">
+    <q-item @click.native="$router.push('/todos')">
       <q-item-side>
         <q-item-tile icon="insert_drive_file" color="blue-4"/>
       </q-item-side>
-      <q-item-main label="My Posts"/>
+      <q-item-main label="Todo"/>
       <q-item-side right></q-item-side>
     </q-item>
     <q-item @click.native="$router.push('/user/groups')">
