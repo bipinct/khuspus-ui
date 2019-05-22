@@ -1,5 +1,5 @@
-mutation($content: String!, $images: [String]) {
-  createPost(content: $content, images: $images) {
+mutation($content: String!, $images: [String], $file: Upload) {
+  createPost(content: $content, images: $images, file: $file) {
     status
     message
   }

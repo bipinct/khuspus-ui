@@ -42,7 +42,7 @@
               </q-item>
             </div>
             <div>
-              <q-btn rounded color="blue" @click="submitPost()" @click.native="createPost">Submit</q-btn>
+              <q-btn rounded color="blue" @click="submitPost()">Submit</q-btn>
             </div>
             <p v-if="error">An error occured: {{ error }}</p>
           </q-item-main>

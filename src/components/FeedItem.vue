@@ -15,7 +15,9 @@
     <q-item-tile class="q-p-2">
       <q-card flat>
         <q-card-media>
-          <img v-if="gallery" :src="gallery[0]">
+          <img v-if="gallery" :src="gallery">
+          <!-- {{gallery[0]}} -->
+          <Media v-if="false" :kind="'video'" :controls="true" :src="gallery"/>
         </q-card-media>
         <q-card-title>{{content}}</q-card-title>
 
@@ -116,11 +118,13 @@ import ShareButton from './ShareButton'
 import AddRemoveTodo from './AddRemoveTodo'
 import AddRemoveDone from './AddRemoveDone'
 import AddRemoveComment from './AddRemoveComment'
+import Media from '@dongido/vue-viaudio'
 
 // import CommentBox from './CommentBox'
 export default {
   components: {
     // LikeItem,
+    Media,
     ShareButton,
     AddRemoveTodo,
     AddRemoveDone,
@@ -138,7 +142,7 @@ export default {
       commentsOnPost: this.comments && this.comments.comments ? this.comments.comments : [],
       commentCursor: this.comments ? this.comments.cursor : null,
       previewPost: false,
-      gallery: this.processImages(this.images),
+      gallery: this.images,
       isloadingMoreComments: false,
       newCommentData: null
     }
@@ -152,6 +156,7 @@ export default {
       // console.log(this)
     },
     processImages (images) {
+      console.log(images)
       return images ? images.split(',') : null
     },
     sendLike () {
