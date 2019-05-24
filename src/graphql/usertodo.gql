@@ -28,6 +28,10 @@ query($cursor: String, $commentCount: Int, $commentCursor: String) {
       }
       createdAt
       images
+      commentCount
+      todoCount
+      doneCount
+      listedin
     }
   }
 }

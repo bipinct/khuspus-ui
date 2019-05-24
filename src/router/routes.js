@@ -6,7 +6,7 @@ import EmptyLayout from '../layouts/EmptyLayout'
 // import TodoListLayout from '../layouts/TodoListLayout'
 import TodoList from '../pages/user/TodoList'
 
-import TwitterLayout from '../layouts/TwitterLayout'
+// import TwitterLayout from '../layouts/TwitterLayout'
 // user pages
 import FeedList from '../pages/user/FeedList'
 import SingleFeedItem from '../pages/user/SingleFeedItem'
@@ -27,7 +27,7 @@ import AddGroupMember from '../pages/group/AddGroupMember'
 import VerifyEmail from '../pages/public/VerifyEmail'
 import PublicProfile from '../pages/public/PublicProfile'
 import SuggestionUserList from '../pages/public/SuggestionUserList'
-import SuggestionGroupList from '../pages/public/SuggestionGroupList'
+// import SuggestionGroupList from '../pages/public/SuggestionGroupList'
 import Onboarding from '../pages/user/Onboarding'
 
 // import Password from '../components/onboarding/Password'
@@ -58,14 +58,6 @@ const routes = [
       {
         path: '/onboarding',
         component: Onboarding
-      },
-      {
-        path: '/feed',
-        component: EmptyLayout,
-        children: [
-          { path: '/', component: FeedList },
-          { path: '*', component: SingleFeedItem }
-        ]
       }
     ]
   },
@@ -91,12 +83,8 @@ const routes = [
   },
   {
     path: '/suggestions',
-    component: TwitterLayout,
+    component: DodoLayout,
     children: [
-      {
-        path: 'groups',
-        component: SuggestionGroupList
-      },
       {
         path: 'users',
         component: SuggestionUserList
@@ -125,10 +113,10 @@ const routes = [
         component: EditProfile
       },
 
-      {
-        path: 'posts',
-        component: PostList
-      },
+      // {
+      //   path: 'posts',
+      //   component: PostList
+      // },
 
       {
         name: 'editpost',
@@ -168,6 +156,14 @@ const routes = [
       {
         path: 'groups',
         component: GroupsList
+      },
+      {
+        path: '/post',
+        component: EmptyLayout,
+        children: [
+          { path: '/', component: PostList },
+          { path: '*', component: SingleFeedItem }
+        ]
       }
     ]
   }

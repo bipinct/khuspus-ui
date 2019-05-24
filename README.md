@@ -28,6 +28,15 @@ http://localhost:8080
 quasar build -t mat
 ```
 
+## Build android app
+
+```console
+quasar build -m cordova -T android
+cd src-cordova
+cordova requirements
+cordova run android
+```
+
 for more build option follow <https://quasar-framework.org/guide/app-build-commands.html>
 
 ## Running on production

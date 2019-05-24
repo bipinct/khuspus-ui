@@ -22,12 +22,15 @@
                 :key="post.id"
                 :postId="post.id"
                 :profilePic="post.user.profilepic"
-                :commentCount="post.comments.total"
+                :commentCount="post.commentCount"
                 :comments="post.comments"
                 :likeCount="post.likes.total"
                 :images="post.images"
                 :isLiked="post.likes.isLiked"
                 @click.native="$router.push('/feed/'+post.id)"
+                :todoCount="post.todoCount"
+                :doneCount="post.doneCount"
+                :listedin="post.listedin"
               />
             </q-list>
             <template v-if="data.todos.cursor" v-slot:loading>

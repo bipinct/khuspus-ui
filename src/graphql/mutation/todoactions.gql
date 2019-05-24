@@ -1,0 +1,6 @@
+mutation($postId: String, $action: String) {
+  todoActions(postId: $postId, action: $action) {
+    status
+    message
+  }
+}

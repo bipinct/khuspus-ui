@@ -74,6 +74,7 @@ module.exports = function (ctx) {
         'Loading',
         'QSpinner',
         'QPopover',
+        'QTooltip',
         'QStepper',
         'QTabPane',
         'QAjaxBar',

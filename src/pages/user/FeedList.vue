@@ -26,13 +26,16 @@
                         :key="post.id"
                         :postId="post.id"
                         :profilePic="post.user.profilepic"
-                        :commentCount="post.comments.total"
                         :comments="post.comments"
                         :likeCount="post.likes.total"
                         :images="post.images"
                         :isLiked="post.likes.isLiked"
-                        @click.native="$router.push('/feed/'+post.id)"
+                        :todoCount="post.todoCount"
+                        :doneCount="post.doneCount"
+                        :commentCount="post.commentCount"
+                        :listedin="post.listedin"
                       />
+                      <!-- @click.native="$router.push('/feed/'+post.id)" -->
                     </q-list>
                     <template v-if="data.userfeed.cursor" v-slot:loading>
                       <div class="row justify-center q-my-md">

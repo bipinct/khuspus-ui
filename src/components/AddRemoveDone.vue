@@ -1,33 +1,28 @@
 <template>
   <ApolloMutation
-    :mutation="require('../graphql/likepost.gql')"
-    :variables="{postId:postIdtoString(postId)}"
+    :mutation="require('../graphql/mutation/todoactions.gql')"
+    :variables="{postId:postIdtoString(postId) ,action : action }"
     @done="likeDone"
+    ref="todo"
   >
     <template slot-scope="{ mutate, loading, error }">
       <p v-if="error">An error occured: {{ error }}</p>
-      <q-btn :color=" isinDone ? 'green': 'black'" flat icon="check" :label="dataLikedCount"/>
-      <!-- <q-item-tile
-        v-if="isLikedHighlighted"
-        icon="thumb_up"
-        @click.native="mutate()"
-        color="green"
+      <q-btn
+        :color=" isinDone ? 'green': 'black'"
+        flat
+        icon="check"
+        :label="makeLabelString"
+        @click.stop="actionTodo()"
       />
-      <q-item-tile
-        v-if="!isLikedHighlighted"
-        icon="thumb_up"
-        @click.native="mutate()"
-        color="gray"
-      />-->
-      <!-- <span>({{dataLikedCount}})</span> -->
     </template>
   </ApolloMutation>
 </template>
 <script>
 export default {
-  props: ['isLiked', 'likeCount', 'postId', 'isinTodo', 'isinDone'],
+  props: ['isLiked', 'likeCount', 'postId', 'isinTodo', 'isinDone', 'count'],
   data () {
     return {
+      doneCount: this.count,
       dataLikedCount: '(' + this.likeCount + ')',
       isLikedHighlighted: this.isLiked
     }
@@ -39,8 +34,22 @@ export default {
     },
     postIdtoString (postId) {
       return postId.toString()
+    },
+    actionTodo () {
+      // if (!this.isTodo)
+      this.$refs.todo.mutate()
+      // else this.showTodo = true
     }
 
+  },
+  computed: {
+    makeLabelString () {
+      return '(' + this.doneCount + ')'
+    },
+    action () {
+      return 'done'
+      // this.isinTodo ? 'done' : 'todo'
+    }
   }
 
 }

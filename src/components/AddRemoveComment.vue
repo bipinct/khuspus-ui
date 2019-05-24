@@ -1,22 +1,18 @@
 <template>
-  <ApolloMutation
-    :mutation="require('../graphql/likepost.gql')"
-    :variables="{postId:postIdtoString(postId)}"
-    @done="likeDone"
-  >
-    <template slot-scope="{ mutate, loading, error }">
-      <p v-if="error">An error occured: {{ error }}</p>
-      <q-btn flat icon="comments" :label="dataLikedCount"/>
-    </template>
-  </ApolloMutation>
+  <q-btn flat icon="comments" @click.stop="showCommentBox" :label="dataLikedCount">
+    <CommentBox v-if="writeComment" :postId="postId"/>
+  </q-btn>
 </template>
 <script>
+import CommentBox from './popups/CommentBox'
 export default {
-  props: ['isLiked', 'likeCount', 'postId'],
+  components: { CommentBox },
+  props: ['isLiked', 'likeCount', 'postId', 'count'],
   data () {
     return {
-      dataLikedCount: '(' + this.likeCount + ')',
-      isLikedHighlighted: this.isLiked
+      dataLikedCount: '(' + this.count + ')',
+      isLikedHighlighted: this.isLiked,
+      writeComment: false
     }
   },
   methods: {
@@ -26,6 +22,9 @@ export default {
     },
     postIdtoString (postId) {
       return postId.toString()
+    },
+    showCommentBox () {
+      this.writeComment = true
     }
 
   }

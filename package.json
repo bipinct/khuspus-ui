@@ -2,7 +2,7 @@
   "name": "khuspus-ui",
   "version": "0.0.1",
   "description": "A social media platform",
-  "productName": "Khuspus App",
+  "productName": "Glue Social",
   "cordovaId": "org.cordova.quasar.app",
   "author": "Bipin Chandra Tripathi <bipinchandratripathi@gmail.com>",
   "private": true,

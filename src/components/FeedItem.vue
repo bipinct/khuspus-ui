@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="$router.push('/post/'+postId)">
     <q-item multiline>
       <q-item-side>
         <q-item-tile avatar>
@@ -20,119 +20,56 @@
           <Media v-if="false" :kind="'video'" :controls="true" :src="gallery"/>
         </q-card-media>
         <q-card-title>{{content}}</q-card-title>
-
         <q-card-actions
           style="justify-content:space-between;margin-top:0px!important;border-top:1px solid #eee;border-bottom:1px solid #eee;"
         >
           <AddRemoveTodo
             :isLiked="isLiked"
-            :isinTodo="false"
+            :isinTodo="highlightTodo"
+            :count="todoCount"
             :likeCount="likeCount"
             :postId="postId"
           />
           <AddRemoveDone
             :isLiked="isLiked"
-            :isinDone="false"
+            :isinDone="highlightDone"
+            :likeCount="likeCount"
+            :count="doneCount"
+            :postId="postId"
+          />
+          <AddRemoveComment
+            :count="commentCount"
+            :isLiked="isLiked"
             :likeCount="likeCount"
             :postId="postId"
           />
-          <AddRemoveComment :isLiked="isLiked" :likeCount="likeCount" :postId="postId"/>
           <ShareButton :isLiked="isLiked" :likeCount="likeCount" :postId="postId"/>
         </q-card-actions>
       </q-card>
     </q-item-tile>
-    <!-- <q-item v-if="false">
-      <q-item-side>--</q-item-side>
-      <q-item-main>comments</q-item-main>
-      <q-item-side right>
-        <div>
-          <LikeItem :isLiked="isLiked" :likeCount="likeCount" :postId="postId"/>
-
-          <q-item-tile icon="chat_bubble" color="blue-3"/>
-          <span>({{commentCounted}})</span>
-        </div>
-      </q-item-side>
-    </q-item>-->
-
-    <!-- <ApolloMutation
-          :mutation="require('../graphql/comment.gql')"
-          :variables="{comment : commentInput,postId:postIdtoString(postId)}"
-          @done="commentDone"
-        >
-          <template slot-scope="{ mutate, loading, error }">
-            <q-item>
-              <q-item-main>
-                <q-input
-                  type="text"
-                  name="commentbox"
-                  v-model="commentInput"
-                  @keydown.enter="mutate()"
-                ></q-input>
-              </q-item-main>
-              <q-item-side right>
-                <q-btn
-                  icon="send"
-                  color="secondary"
-                  @click.native="mutate()"
-                  :disabled="!commentInput"
-                ></q-btn>
-              </q-item-side>
-            </q-item>
-
-            <p v-if="error">An error occured: {{ error }}</p>
-          </template>
-    </ApolloMutation>-->
-    <!-- <CommentBox
-          :v-if="false"
-          :comments="comments"
-          :newCommentData="newCommentData"
-          :postId="postId"
-    />-->
-    <!-- <q-item-side right>
-      <q-btn flat round dense icon="more_vert">
-        <q-popover>
-          <q-list link>
-            <q-item v-close-overlay v-if="enableEdit">
-              <q-item-main label="Edit" @click.native="editPost(postId)"></q-item-main>
-            </q-item>
-
-            <q-item v-close-overlay v-if="enableEdit">
-              <q-item-main label="Delete" @click.native="confirmDelete(postId)"></q-item-main>
-            </q-item>
-            <q-item v-close-overlay>
-              <q-item-main
-                label="Report"
-                @click.native="$router.push({'name':'ReportContent','params':{'postId': postId}})"
-              />
-            </q-item>
-          </q-list>
-        </q-popover>
-      </q-btn>
-    </q-item-side>-->
   </div>
 </template>
 
 <script>
-// import LikeItem from './LikeItem'
 import ShareButton from './ShareButton'
 import AddRemoveTodo from './AddRemoveTodo'
 import AddRemoveDone from './AddRemoveDone'
 import AddRemoveComment from './AddRemoveComment'
 import Media from '@dongido/vue-viaudio'
-
-// import CommentBox from './CommentBox'
 export default {
   components: {
-    // LikeItem,
     Media,
     ShareButton,
     AddRemoveTodo,
     AddRemoveDone,
     AddRemoveComment
-    // CommentBox
   },
   props: [
-    'username', 'created', 'content', 'profilePic', 'commentCount', 'likeCount', 'images', 'postId', 'comments', 'isLiked', 'enableEdit', 'isinTodo', 'isinDone'
+    'username', 'created', 'content', 'profilePic', 'commentCount',
+    'todoCount',
+    'doneCount',
+    'listedin',
+    'likeCount', 'images', 'postId', 'comments', 'isLiked', 'enableEdit', 'isinTodo', 'isinDone'
   ],
 
   data () {
@@ -199,8 +136,19 @@ export default {
     },
     reportContent (postId) {
       alert('reporting a content')
+    },
+    itemClicked () {
+      alert('clicked')
     }
 
+  },
+  computed: {
+    highlightTodo () {
+      return this.listedin === 'todo'
+    },
+    highlightDone () {
+      return this.listedin === 'done'
+    }
   }
 
 }
