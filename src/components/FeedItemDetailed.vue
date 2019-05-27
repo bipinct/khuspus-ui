@@ -17,28 +17,26 @@
       <q-item-tile class="q-p-2">
         <q-card flat>
           <q-card-media>
-            <div v-on:click="showFeedDetail()">{{content}}</div>
-            <div v-if="gallery">
-              <q-carousel
-                color="white"
-                arrows
-                quick-nav
-                height="300px"
-                width="200px"
-                :thumbnails="gallery"
-              >
-                <q-carousel-slide v-for="image in gallery" :img-src="image" :key="image"/>
-              </q-carousel>
-            </div>
+            <img v-if="gallery" :src="gallery">
+            <!-- {{gallery[0]}} -->
+            <Media v-if="false" :kind="'video'" :controls="true" :src="gallery"/>
           </q-card-media>
+          <q-card-title>{{content}}</q-card-title>
         </q-card>
       </q-item-tile>
     </q-item>
     <q-item-separator/>
-    <q-toolbar color="white" style="display:flex;justify-content:space-around;" no-shadow>
-      <q-btn flat color="black" label="Todo (2)" icon="list"/>
-      <q-btn flat color="black" label="Done" icon="check"/>
+    <q-toolbar color="white" no-shadow>
+      <q-btn flat color="black" @click="$router.push('/post/todo-users/1')">
+        <span class="c-dark">10</span>
+        <span class="c-lightlabel">&nbsp;&nbsp;Todo</span>
+      </q-btn>
+      <q-btn flat color="black" @click="$router.push('/post/done-users/1')">
+        <span class="c-dark">20</span>
+        <span class="c-lightlabel">&nbsp;&nbsp;Done</span>
+      </q-btn>
     </q-toolbar>
+
     <q-item-separator/>
     <q-toolbar color="white" style="display:flex;justify-content:space-around;" no-shadow>
       <q-btn flat color="secondary" dense icon="comment"/>
@@ -137,6 +135,15 @@ export default {
 
 }
 </script>
+<style>
+.c-lightlabel {
+  text-transform: capitalize;
+  font-weight: normal;
+}
+.c-dark {
+  font-weight: bold;
+}
+</style>
  <!-- <q-item v-if="false">
         <q-item-side>--</q-item-side>
         <q-item-main>comments</q-item-main>

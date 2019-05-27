@@ -2,7 +2,7 @@
 import HomeLayout from '../layouts//HomeLayout'
 import DodoLayout from '../layouts/DodoLayout'
 
-import EmptyLayout from '../layouts/EmptyLayout'
+// import EmptyLayout from '../layouts/EmptyLayout'
 // import TodoListLayout from '../layouts/TodoListLayout'
 import TodoList from '../pages/user/TodoList'
 
@@ -14,19 +14,23 @@ import Login from '../pages/public/Login'
 import VerifyOTP from '../pages/public/VerifyOTP'
 
 import PostList from '../pages/user/PostList'
-import EditPost from '../pages/user/EditPost'
+// import EditPost from '../pages/user/EditPost'
 import Followers from '../pages/user/Followers'
 import Following from '../pages/user/Following'
-import GroupsList from '../pages/user/GroupsList'
+// import UserList from '../pages/public/UserList'
+// import GroupsList from '../pages/user/GroupsList'
 import EditProfile from '../pages/user/EditProfile'
-import ReportContent from '../pages/user/ReportContent'
+// import ReportContent from '../pages/user/ReportContent'
 // group pages
-import SingleGroup from '../pages/group/SingleGroup'
-import AddGroupMember from '../pages/group/AddGroupMember'
+// import SingleGroup from '../pages/group/SingleGroup'
+// import AddGroupMember from '../pages/group/AddGroupMember'
 // public pages
 import VerifyEmail from '../pages/public/VerifyEmail'
 import PublicProfile from '../pages/public/PublicProfile'
-import SuggestionUserList from '../pages/public/SuggestionUserList'
+import PostDoneList from '../pages/PostDoneList'
+import PostTodoList from '../pages/PostTodoList'
+
+// import SuggestionUserList from '../pages/public/SuggestionUserList'
 // import SuggestionGroupList from '../pages/public/SuggestionGroupList'
 import Onboarding from '../pages/user/Onboarding'
 
@@ -61,6 +65,22 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/post',
+    component: DodoLayout,
+    children: [
+      { path: '/', component: PostList },
+      {
+        path: 'todo-users/*',
+        component: PostTodoList
+      },
+      {
+        path: 'done-users/*',
+        component: PostDoneList
+      },
+      { path: '*', component: SingleFeedItem }
+    ]
+  },
 
   {
     path: '/profile',
@@ -81,16 +101,16 @@ const routes = [
     component: VerifyEmail,
     props: true
   },
-  {
-    path: '/suggestions',
-    component: DodoLayout,
-    children: [
-      {
-        path: 'users',
-        component: SuggestionUserList
-      }
-    ]
-  },
+  // {
+  //   path: '/suggestions',
+  //   component: DodoLayout,
+  //   children: [
+  //     {
+  //       path: 'users',
+  //       component: SuggestionUserList
+  //     }
+  //   ]
+  // },
 
   {
     path: '/user',
@@ -101,39 +121,8 @@ const routes = [
         component: FeedList
       },
       {
-        path: 'feed',
-        component: FeedList
-      },
-      {
         path: '/todos',
         component: TodoList
-      },
-      {
-        path: 'profile',
-        component: EditProfile
-      },
-
-      // {
-      //   path: 'posts',
-      //   component: PostList
-      // },
-
-      {
-        name: 'editpost',
-        path: 'edit-post',
-        component: EditPost
-      },
-      {
-        name: 'ReportContent',
-        path: 'report-content',
-        component: ReportContent,
-        props: true
-      },
-      {
-        name: 'AddGroupMembers',
-        path: 'add-group-members',
-        component: AddGroupMember,
-        props: true
       },
       {
         path: 'followers',
@@ -142,29 +131,48 @@ const routes = [
       {
         path: 'following',
         component: Following
-      },
-      {
-        path: 'group',
-        component: EmptyLayout,
-        children: [
-          {
-            path: '*',
-            component: SingleGroup
-          }
-        ]
-      },
-      {
-        path: 'groups',
-        component: GroupsList
-      },
-      {
-        path: '/post',
-        component: EmptyLayout,
-        children: [
-          { path: '/', component: PostList },
-          { path: '*', component: SingleFeedItem }
-        ]
       }
+
+      // {
+      //   path: 'feed',
+      //   component: FeedList
+      // },
+
+      // {
+      //   path: 'profile',
+      //   component: EditProfile
+      // },
+      // {
+      //   name: 'editpost',
+      //   path: 'edit-post',
+      //   component: EditPost
+      // },
+      // {
+      //   name: 'ReportContent',
+      //   path: 'report-content',
+      //   component: ReportContent,
+      //   props: true
+      // },
+      // {
+      //   name: 'AddGroupMembers',
+      //   path: 'add-group-members',
+      //   component: AddGroupMember,
+      //   props: true
+      // },
+      // {
+      //   path: 'group',
+      //   component: EmptyLayout,
+      //   children: [
+      //     {
+      //       path: '*',
+      //       component: SingleGroup
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: 'groups',
+      //   component: GroupsList
+      // }
     ]
   }
 ]

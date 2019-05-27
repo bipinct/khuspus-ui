@@ -11,6 +11,9 @@
           <strong style=" text-transform:capitalize;">{{username}}</strong>
         </q-item-tile>
       </q-item-main>
+      <q-item-side right>
+        <q-btn flat icon="keyboard_arrow_down" color="black-3"/>
+      </q-item-side>
     </q-item>
     <q-item-tile class="q-p-2">
       <q-card flat>

@@ -16,17 +16,20 @@ const { createUploadLink } = require('apollo-upload-client')
 // global.serverUrl = 'http://192.168.0.105:4000/graphql'
 // global.imageUploadUrl = 'http://192.168.0.105:4000/upload'
 
-global.serverUrl = 'http://10.5.50.138:4000/graphql'
-global.imageUploadUrl = 'http://10.5.50.138:4000/upload'
-
-// global.serverUrl = 'http://10.5.50.138:4000/graphql '
+// global.serverUrl = 'http://10.5.50.138:4000/graphql'
 // global.imageUploadUrl = 'http://10.5.50.138:4000/upload'
 
-// global.serverUrl = "http://localhost:4000/graphql "
-// global.imageUploadUrl = "http://localhost:4000/upload"
+// global.serverUrl = 'http://192.168.0.59:4000/graphql '
+// global.imageUploadUrl = 'http://192.168.0.59:4000/upload'
+
+// global.serverUrl = 'https://gluesocial.herokuapp.com/graphql '
+// global.imageUploadUrl = 'https://gluesocial.herokuapp.com/upload'
 
 // global.serverUrl = "https://stormy-plateau-95107.herokuapp.com/graphql"
 // global.imageUploadUrl = "https://stormy-plateau-95107.herokuapp.com/upload"
+
+global.serverUrl = 'http://192.168.0.59:4000/graphql'
+global.imageUploadUrl = 'http://192.168.0.59:4000/upload'
 
 const httpLink = createHttpLink({
   uri: global.serverUrl,

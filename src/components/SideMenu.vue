@@ -37,13 +37,6 @@
       <q-item-main label="Following"/>
       <q-item-side right></q-item-side>
     </q-item>
-    <q-item @click.native="$router.push('/suggestions/users')">
-      <q-item-side>
-        <q-item-tile icon="face" color="black-4"/>
-      </q-item-side>
-      <q-item-main label="User Suggestions"/>
-      <q-item-side right></q-item-side>
-    </q-item>
     <q-item-separator/>
     <q-item>
       <q-item-side>

@@ -2,12 +2,19 @@
   <q-layout view="lHh Lpr lFf">
     <q-ajax-bar position="top" color="green"/>
     <q-layout-header view="hhh">
-      <q-toolbar color="white" text-color="primary" :inverted="$q.theme === 'ios'">
+      <q-toolbar
+        color="white"
+        text-color="primary"
+        :inverted="$q.theme === 'ios'"
+        style="justify-content:space-between"
+      >
         <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu">
-          <!-- TODO set avatar pic -->
           <q-icon name="menu"/>
         </q-btn>
         <q-search v-model="search" clearable :debounce="600"/>
+        <q-btn flat dense round aria-label="Menu">
+          <q-icon name="apps"/>
+        </q-btn>
       </q-toolbar>
     </q-layout-header>
     <q-layout-drawer
@@ -22,14 +29,6 @@
       <router-view/>
     </q-page-container>
     <PopupCreatePost/>
-
-    <!-- <q-layout-footer>
-      <q-toolbar color="white" style="display:flex;justify-content:space-around;" no-shadow>
-        <q-btn round color="primary" dense icon="person" @click.native="$router.push('/feed')"/>
-        <q-btn round color="green" dense icon="check" @click.native="$router.push('/todos')"/>
-        <PopupCreatePost/>
-      </q-toolbar>
-    </q-layout-footer>-->
   </q-layout>
 </template>
 <script>

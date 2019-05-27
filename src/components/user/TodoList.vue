@@ -27,7 +27,6 @@
                 :likeCount="post.likes.total"
                 :images="post.images"
                 :isLiked="post.likes.isLiked"
-                @click.native="$router.push('/feed/'+post.id)"
                 :todoCount="post.todoCount"
                 :doneCount="post.doneCount"
                 :listedin="post.listedin"

@@ -9,6 +9,7 @@
             :variables="{ commentCount:5 }"
           >
             <template slot-scope="{ result: { loading, error, data } }">
+              {{error}}
               <div v-if="loading" class="loading apollo">
                 <q-spinner color="primary" size="6em"/>
               </div>
