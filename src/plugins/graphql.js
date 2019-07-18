@@ -4,6 +4,8 @@ import VueApollo from 'vue-apollo'
 import fetch from 'node-fetch'
 import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
+import { WebSocketLink } from 'apollo-link-ws'
+// import { getMainDefinition } from 'apollo-utilities'
 const { createUploadLink } = require('apollo-upload-client')
 
 // import { WebSocketLink } from 'apollo-link-ws'
@@ -13,8 +15,9 @@ const { createUploadLink } = require('apollo-upload-client')
 // global.serverUrl = 'http://192.168.0.59:4000/graphql'
 // global.imageUploadUrl = 'http://192.168.0.59:4000/upload'
 
-// global.serverUrl = 'http://192.168.0.105:4000/graphql'
-// global.imageUploadUrl = 'http://192.168.0.105:4000/upload'
+global.serverUrl = 'http://52.89.71.33/graphql'
+global.wsurl = 'ws://52.89.71.33/graphql'
+global.imageUploadUrl = 'http://52.89.71.33/upload'
 
 // global.serverUrl = 'http://10.5.50.138:4000/graphql'
 // global.imageUploadUrl = 'http://10.5.50.138:4000/upload'
@@ -28,20 +31,20 @@ const { createUploadLink } = require('apollo-upload-client')
 // global.serverUrl = "https://stormy-plateau-95107.herokuapp.com/graphql"
 // global.imageUploadUrl = "https://stormy-plateau-95107.herokuapp.com/upload"
 
-global.serverUrl = 'http://192.168.0.59:4000/graphql'
-global.imageUploadUrl = 'http://192.168.0.59:4000/upload'
+// global.serverUrl = '192.168.0.59:4000/graphql'
+// global.imageUploadUrl = 'http://192.168.0.59:4000/upload'
 
 const httpLink = createHttpLink({
   uri: global.serverUrl,
   fetch: fetch
 })
 
-// const wsLink = new WebSocketLink({
-//   uri: 'ws://' + serverUrl + '/graphql',
-//   options: {
-//     reconnect: true
-//   }
-// })
+const wsLink = new WebSocketLink({
+  uri: global.wsurl,
+  options: {
+    reconnect: true
+  }
+})
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('x-token')
@@ -57,7 +60,7 @@ const authLink = setContext((_, { headers }) => {
 // Create the apollo client
 // wsLink,
 const apolloClient = new ApolloClient({
-  link: authLink.concat(httpLink, createUploadLink()),
+  link: authLink.concat(httpLink, wsLink, createUploadLink()),
   cache: new InMemoryCache(),
   connectToDevTools: true
 })

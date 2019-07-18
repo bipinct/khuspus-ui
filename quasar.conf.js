@@ -38,7 +38,7 @@ module.exports = function (ctx) {
     devServer: {
       proxy: {
         '/graphql': {
-          target: 'http://localhost:4000',
+          target: 'http://52.89.71.33',
           changeOrigin: true
         }
       },

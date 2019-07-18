@@ -1,0 +1,5 @@
+subscription($comment: String!) {
+  commentAdded(comment: $comment) {
+    comment
+  }
+}
