@@ -54,7 +54,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "jest": "^24.5.0",
     "jest-puppeteer": "^4.1.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "puppeteer": "^1.13.0",
     "quasar-cli": "^0.17.0",
     "sass-loader": "^7.1.0",
